@@ -1,0 +1,8 @@
+* text=auto
+*.woff2 binary
+*.png binary
+*.svg text
+*.css text
+*.js text
+*.json text
+*.md text
