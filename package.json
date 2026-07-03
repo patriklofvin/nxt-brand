@@ -1,0 +1,25 @@
+{
+  "name": "@nxt/brand",
+  "version": "1.0.0",
+  "description": "NXT design tokens, logotyper och typsnitt. Källa: NXT Brand Book v1.0 (2026). En central källa för KL Studio, wise-assist, Compliance OS, Lexicon, Testcenter och ahrant-platform.",
+  "license": "UNLICENSED",
+  "private": false,
+  "files": [
+    "css",
+    "fonts",
+    "logos",
+    "tailwind.preset.js",
+    "README.md"
+  ],
+  "exports": {
+    "./css/nxt-tokens.css": "./css/nxt-tokens.css",
+    "./css/fonts.css": "./css/fonts.css",
+    "./tailwind.preset": "./tailwind.preset.js",
+    "./logos/*": "./logos/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/patriklofvin/nxt-brand.git"
+  },
+  "keywords": ["nxt", "brand", "design-tokens"]
+}

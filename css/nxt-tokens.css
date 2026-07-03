@@ -1,0 +1,43 @@
+/* ============================================================
+   NXT Design Tokens — v1.0
+   Källa: NXT Brand Book v1.0 (2026)
+   Delas av: KL Studio, wise-assist-ai, Compliance OS,
+             Lexicon, Testcenter, ahrant-platform
+   Regel: Ändringar görs ENDAST här och synkas ut till alla repos.
+   ============================================================ */
+
+:root {
+  /* ---- Primärpalett ---- */
+  --nxt-violet: #7E5A96;        /* NXT Violett — primär. ERSÄTTER #825B94 och #2563EB */
+  --nxt-ink:    #211B27;        /* Bläck — brödtext */
+  --nxt-paper:  #FAF7FB;        /* Papper — ljus bakgrund */
+
+  /* ---- Modulfärger (accenter — aldrig dominerande textyta) ---- */
+  --nxt-learning:   #7E5A96;    /* NXT Learning — kärnplattform/LMS */
+  --nxt-studio:     #C25D86;    /* NXT Studio — författarverktyg (KL Studio) */
+  --nxt-compliance: #5C6FC0;    /* NXT Compliance — regelefterlevnad */
+  --nxt-assist:     #2F8E9C;    /* NXT Assist — AI-assistent (f.d. Wise Assist) */
+  --nxt-test:       #3F9466;    /* NXT Test — prov/examinering */
+  --nxt-lexicon:    #B0822F;    /* NXT Lexicon — kunskapsbank/ordlista */
+  --nxt-docs:       #6B6677;    /* NXT Docs — dokumentation som tjänst */
+
+  /* ---- Aktiv modulaccent — sätts per app i respektive root ----
+     Ex i KL Studio:      --nxt-accent: var(--nxt-studio);
+     Ex i Compliance OS:  --nxt-accent: var(--nxt-compliance);  */
+  --nxt-accent: var(--nxt-learning);
+
+  /* ---- Typografi ---- */
+  --nxt-font-sans: 'Sora', system-ui, sans-serif;          /* 300/400/600/700 */
+  --nxt-font-mono: 'JetBrains Mono', ui-monospace, monospace; /* 400/500 */
+
+  /* Skala — digitalt (px per brand book §07) */
+  --nxt-text-display: 48px;   /* Display */
+  --nxt-text-heading: 28px;   /* Rubrik */
+  --nxt-text-body:    16px;   /* Brödtext */
+  --nxt-text-label:   12px;   /* Etikett (uppercase, mono) */
+
+  /* ---- Ytregler (brand book §06) ----
+     Mono-lockup (violett + bläck) på neutrala ytor.
+     Modulfärg som bärande yta => vit reverserad lockup.
+     Minst 4,5:1 kontrast (WCAG AA). Märket färgas aldrig om. */
+}
