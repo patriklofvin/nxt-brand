@@ -78,5 +78,5 @@ Skala digitalt: display 48 / rubrik 28 / brödtext 16 / etikett 12 px.
 - [x] `nxt-tokens.css` + `tailwind.preset.js` verifierade mot brand book v1.0
 - [x] Fonts self-hostade som woff2, licens kontrollerad (Sora: OFL,
       JetBrains Mono: OFL — OK)
-- [x] Testinstallation från GitHub-URL fungerar i minst ett konsumerande repo
+- [x] Testinstallation från GitHub-URL fungerar i minst ett konsumerande repo (verifierad mot `v1.0.1`)
 - [ ] Manthan DoD-sign-off (Rule 8)
