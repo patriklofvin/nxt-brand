@@ -21,6 +21,17 @@
   --nxt-lexicon:    #B0822F;    /* NXT Lexicon — kunskapsbank/ordlista */
   --nxt-docs:       #6B6677;    /* NXT Docs — dokumentation som tjänst */
 
+  /* ---- Semantisk status (beslut 2026-07-10, ur brand book-paletten) ---- */
+  --nxt-error:   #C0392B;
+  --nxt-warning: #B0822F;
+  --nxt-success: #3F9466;
+  --nxt-info:    #7E5A96;
+  /* Status kommuniceras alltid färg+ikon+text (WCAG 1.4.1) */
+
+  /* ---- Accent-tinter (generiska, följer aktiv accent) ---- */
+  --nxt-accent-50:  color-mix(in srgb, var(--nxt-accent) 8%, white);
+  --nxt-accent-100: color-mix(in srgb, var(--nxt-accent) 16%, white);
+
   /* ---- Aktiv modulaccent — sätts per app i respektive root ----
      Ex i KL Studio:      --nxt-accent: var(--nxt-studio);
      Ex i Compliance OS:  --nxt-accent: var(--nxt-compliance);  */

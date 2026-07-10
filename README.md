@@ -7,7 +7,7 @@ plattformen**. Källa till sanning: **NXT Brand Book v1.0 (2026)**.
 ## Installation
 
 ```bash
-npm i github:patriklofvin/nxt-brand#v1.0.0
+npm i github:patriklofvin/nxt-brand#v1.1.0
 ```
 
 ## Användning
@@ -50,6 +50,26 @@ import logo from '@nxt/brand/logos/svg/nxt-assist-primary.svg';
 
 Accent-scoping för moduler: sätt `--nxt-accent` på modulens rot-element,
 inte på `:root` — då blir Testcenter grönt inne i rosa Studio.
+
+## Statuspalett (beslut 2026-07-10)
+
+Semantiska statusfärger ur brand book-paletten. Status kommuniceras
+**alltid** med färg **+ ikon + text** (WCAG 1.4.1 — aldrig enbart färg).
+
+| Token | Hex | Tailwind | Användning |
+|---|---|---|---|
+| `--nxt-error` | `#C0392B` | `nxt.error` | Fel, destruktiva tillstånd |
+| `--nxt-warning` | `#B0822F` | `nxt.warning` | Varning (= bärnsten) |
+| `--nxt-success` | `#3F9466` | `nxt.success` | Lyckat (= grön) |
+| `--nxt-info` | `#7E5A96` | `nxt.info` | Information (= violett) |
+
+Generiska accent-tinter som följer aktiv `--nxt-accent` (för hover,
+markerade rader, subtila fyllningar):
+
+| Token | Definition | Tailwind |
+|---|---|---|
+| `--nxt-accent-50` | `color-mix(... 8%, white)` | `nxt.accent-50` |
+| `--nxt-accent-100` | `color-mix(... 16%, white)` | `nxt.accent-100` |
 
 ## Ytregler (bindande — Brand Book §03/§06)
 

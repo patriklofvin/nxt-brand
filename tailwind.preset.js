@@ -23,6 +23,12 @@ module.exports = {
           test: 'var(--nxt-test)',
           lexicon: 'var(--nxt-lexicon)',
           docs: 'var(--nxt-docs)',
+          error: 'var(--nxt-error)',
+          warning: 'var(--nxt-warning)',
+          success: 'var(--nxt-success)',
+          info: 'var(--nxt-info)',
+          'accent-50': 'var(--nxt-accent-50)',
+          'accent-100': 'var(--nxt-accent-100)',
         },
       },
       fontFamily: {

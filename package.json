@@ -1,6 +1,6 @@
 {
   "name": "@nxt/brand",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "NXT design tokens, logotyper och typsnitt. Källa: NXT Brand Book v1.0 (2026). En central källa för KL Studio, wise-assist, Compliance OS, Lexicon, Testcenter och ahrant-platform.",
   "license": "UNLICENSED",
   "private": false,
