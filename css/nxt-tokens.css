@@ -21,6 +21,18 @@
   --nxt-lexicon:    #B0822F;    /* NXT Lexicon — kunskapsbank/ordlista */
   --nxt-docs:       #6B6677;    /* NXT Docs — dokumentation som tjänst */
 
+  /* ---- Strong-varianter (v1.2.0) ----
+     Mörkad grundton med bevarad nyans: color-mix(in srgb, grundton 82%, #000).
+     Skrivna som literal hex så att värdet är mätbart och inte beror på
+     color-mix-stöd. Enda syftet: bära LITEN VIT TEXT (≥4,5:1 mot vit).
+     Regel: yta och stora grader = grundton, interaktiva små element = strong.
+     Uppmätta kontraster mot vit (WCAG 2.1) inom parentes.
+     Violett, skiffer och blå klarar redan 4,5:1 och har därför ingen variant. */
+  --nxt-studio-strong:  #9F4C6E;  /* 5,63:1 — ur #C25D86 (4,04:1) */
+  --nxt-assist-strong:  #277480;  /* 5,39:1 — ur #2F8E9C (3,84:1) */
+  --nxt-test-strong:    #347954;  /* 5,24:1 — ur #3F9466 (3,72:1) */
+  --nxt-lexicon-strong: #906B27;  /* 4,86:1 — ur #B0822F (3,45:1) */
+
   /* ---- Semantisk status (beslut 2026-07-10, ur brand book-paletten) ---- */
   --nxt-error:   #C0392B;
   --nxt-warning: #B0822F;
@@ -34,8 +46,12 @@
 
   /* ---- Aktiv modulaccent — sätts per app i respektive root ----
      Ex i KL Studio:      --nxt-accent: var(--nxt-studio);
+                          --nxt-accent-strong: var(--nxt-studio-strong);
      Ex i Compliance OS:  --nxt-accent: var(--nxt-compliance);  */
   --nxt-accent: var(--nxt-learning);
+  /* Moduler utan egen strong-variant (violett/skiffer/blå) klarar 4,5:1
+     som de är — där sätts --nxt-accent-strong till samma värde som accenten. */
+  --nxt-accent-strong: var(--nxt-learning);
 
   /* ---- Typografi ---- */
   --nxt-font-sans: 'Sora', system-ui, sans-serif;          /* 300/400/600/700 */

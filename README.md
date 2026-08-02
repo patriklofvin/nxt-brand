@@ -7,7 +7,7 @@ plattformen**. Källa till sanning: **NXT Brand Book v1.0 (2026)**.
 ## Installation
 
 ```bash
-npm i github:patriklofvin/nxt-brand#v1.1.0
+npm i github:patriklofvin/nxt-brand#v1.2.0
 ```
 
 ## Användning
@@ -19,7 +19,8 @@ npm i github:patriklofvin/nxt-brand#v1.1.0
 
 :root {
   /* Sätt appens modulaccent (exempel: wise-assist) */
-  --nxt-accent: var(--nxt-assist);
+  --nxt-accent:        var(--nxt-assist);
+  --nxt-accent-strong: var(--nxt-assist-strong);
 }
 ```
 
@@ -48,8 +49,9 @@ import logo from '@nxt/brand/logos/svg/nxt-assist-primary.svg';
 | Lexicon (fristående läge) | `--nxt-lexicon` | `#B0822F` |
 | Docs (leveranser) | `--nxt-docs` | `#6B6677` |
 
-Accent-scoping för moduler: sätt `--nxt-accent` på modulens rot-element,
-inte på `:root` — då blir Testcenter grönt inne i rosa Studio.
+Accent-scoping för moduler: sätt `--nxt-accent` (och `--nxt-accent-strong`)
+på modulens rot-element, inte på `:root` — då blir Testcenter grönt inne i
+rosa Studio.
 
 ## Statuspalett (beslut 2026-07-10)
 
@@ -71,6 +73,52 @@ markerade rader, subtila fyllningar):
 | `--nxt-accent-50` | `color-mix(... 8%, white)` | `nxt.accent-50` |
 | `--nxt-accent-100` | `color-mix(... 16%, white)` | `nxt.accent-100` |
 
+## Strong-varianter (v1.2.0) — för liten vit text
+
+Fyra modulfärger bär inte liten vit text (se kontrasttabellen nedan). Varje
+sådan modul har därför en **strong-variant**: grundtonen mörkad med bevarad
+nyans via `color-mix(in srgb, grundton 82%, #000)`, utskriven som literal hex
+i tokenfilen så att värdet är mätbart och inte beror på `color-mix`-stöd.
+
+> **Regel: yta och stora grader = grundton. Interaktiva små element = strong.**
+>
+> Grundtonen är fortsatt den bärande ytan (header, hero, sektionsband) och
+> gäller för stor text (≥24 px, eller ≥18,66 px bold) — den är oförändrad och
+> ingen befintlig yta ska bytas ut. Strong används enbart där **liten vit text**
+> ligger på färgen: knappar, chips, badges, taggar, aktiva menyrader,
+> fokus-/hover-tillstånd och andra små interaktiva element.
+
+| Token | Hex | Vit text | Grundton | Grundtonens vit-kontrast | Tailwind |
+|---|---|---|---|---|---|
+| `--nxt-studio-strong` | `#9F4C6E` | **5,63:1** | `#C25D86` | 4,04:1 ✗ | `nxt.studio-strong` |
+| `--nxt-assist-strong` | `#277480` | **5,39:1** | `#2F8E9C` | 3,84:1 ✗ | `nxt.assist-strong` |
+| `--nxt-test-strong` | `#347954` | **5,24:1** | `#3F9466` | 3,72:1 ✗ | `nxt.test-strong` |
+| `--nxt-lexicon-strong` | `#906B27` | **4,86:1** | `#B0822F` | 3,45:1 ✗ | `nxt.lexicon-strong` |
+
+Samtliga värden är uppmätta med samma räknare som kontrasttabellen nedan
+(WCAG 2.1 relativ luminans), validerad mot facit vit/svart = 21,00,
+vit/`#777777` = 4,48 och vit/`#767676` = 4,54. Nyansen är bevarad: HSL-vinkeln
+skiftar ≤0,4° mellan grundton och strong-variant.
+
+Som textfärg mot papper `#FAF7FB` ligger varianterna på 5,29 / 5,07 / 4,93 /
+4,58 — alla klarar AA, så strong duger även till liten färgad text på papper
+där grundtonen inte gör det.
+
+`--nxt-learning` `#7E5A96`, `--nxt-docs` `#6B6677` (5,54:1) och
+`--nxt-compliance` `#5C6FC0` (4,68:1) bär redan liten vit text och har därför
+**ingen** strong-variant. För accent-agnostisk kod finns `--nxt-accent-strong`,
+som varje app pekar om tillsammans med `--nxt-accent`; för dessa tre moduler
+sätts den till samma värde som accenten.
+
+```css
+/* Bärande yta i grundton, knapp i strong */
+.module-header { background: var(--nxt-accent); }          /* stor text OK */
+.module-header .btn {                                       /* 13 px vit text */
+  background: var(--nxt-accent-strong);
+  color: #fff;
+}
+```
+
 ## Ytregler (bindande — Brand Book §03/§06)
 
 - **Neutrala ytor** (dokument, tabeller, arbetsytor): papper-bakgrund,
@@ -79,6 +127,8 @@ markerade rader, subtila fyllningar):
   **vit reverserad lockup**.
 - NXT-märket färgas **aldrig** om i accentfärg, förvrängs eller roteras.
 - Modulfärger = accenter, ikoner, tillstånd, diagram. Aldrig stora textytor.
+- Yta och stora grader använder **grundtonen**; små interaktiva element med vit
+  text använder modulens **strong-variant** (se avsnittet ovan).
 - Minsta logotypstorlek digitalt: **24 px höjd**. Frizon: X-höjden.
 
 ## Kontrast (WCAG AA)
@@ -125,10 +175,11 @@ AA-trösklar: **4,5:1** för normal text, **3,0:1** för stor text
 - **Bärnsten, grön, turkos och rosa underkänns alla för normal text i vitt.**
   Alla fyra ligger över 3,0:1 och klarar därmed stor text (≥24 px / ≥18,66 px
   bold), men under 4,5:1 — vit brödtext är alltså uteslutet på samtliga fyra.
-- Behövs liten **vit** text på en modulfärgad yta: använd en **mörkare ton av
-  samma token** (t.ex. `color-mix(in srgb, var(--nxt-accent) 82%, #000)`, jfr
-  `--nxt-accent-strong` i KL Studio = `#9F4C6E`, 5,63:1). På rosa räcker inte
-  bläck heller (4,16:1) — där är mörkare yta enda vägen.
+- Behövs liten **vit** text på en modulfärgad yta: använd modulens
+  **strong-variant** (`--nxt-studio-strong` m.fl., se avsnittet ovan). Sedan
+  v1.2.0 finns de som tokens i paketet — mörka inte längre på egen hand i
+  konsumerande repos. På rosa räcker inte bläck heller (4,16:1) — där är
+  mörkare yta enda vägen.
 - Status kommuniceras alltid färg **+ ikon + text** (WCAG 1.4.1), så en
   underkänd färgkontrast aldrig ensam bär informationen.
 

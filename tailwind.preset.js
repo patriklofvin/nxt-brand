@@ -23,6 +23,13 @@ module.exports = {
           test: 'var(--nxt-test)',
           lexicon: 'var(--nxt-lexicon)',
           docs: 'var(--nxt-docs)',
+          // Strong-varianter: bär liten vit text (≥4,5:1). Yta och stora
+          // grader = grundton, interaktiva små element = strong.
+          'accent-strong': 'var(--nxt-accent-strong)',
+          'studio-strong': 'var(--nxt-studio-strong)',
+          'assist-strong': 'var(--nxt-assist-strong)',
+          'test-strong': 'var(--nxt-test-strong)',
+          'lexicon-strong': 'var(--nxt-lexicon-strong)',
           error: 'var(--nxt-error)',
           warning: 'var(--nxt-warning)',
           success: 'var(--nxt-success)',
