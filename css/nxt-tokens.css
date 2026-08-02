@@ -12,6 +12,19 @@
   --nxt-ink:    #211B27;        /* Bläck — brödtext */
   --nxt-paper:  #FAF7FB;        /* Papper — ljus bakgrund */
 
+  /* ---- Neutralskala (v1.3.0) ----
+     Saknades i brand book v1.0, vilket ledde till att varje konsument
+     uppfann sin egen (#494351/#E7E2EC i nxt-web, egna värden i övriga).
+     Härledda ur bläck+papper så de följer med om baspaletten ändras. */
+  --nxt-ink-soft: color-mix(in srgb, var(--nxt-ink) 62%, var(--nxt-paper));
+  /* ^ #736F78 — 4,62:1 mot papper. Uppmätt, klarar AA för normal text.
+       62 % är golvet: 60 % ger 4,35:1 och underkänns. Sänk inte. */
+  --nxt-line: color-mix(in srgb, var(--nxt-ink) 14%, var(--nxt-paper));
+  /* ^ #DCD8DD — 1,33:1 mot papper. AVDELARE OCH RAMAR, aldrig text.
+       Klarar inte 3:1 (WCAG 1.4.11), så den får aldrig vara det enda
+       som identifierar en komponent eller dess tillstånd — lägg då till
+       bakgrund, ikon eller etikett. */
+
   /* ---- Modulfärger (accenter — aldrig dominerande textyta) ---- */
   --nxt-learning:   #7E5A96;    /* NXT Learning — kärnplattform/LMS */
   --nxt-studio:     #C25D86;    /* NXT Studio — författarverktyg (KL Studio) */

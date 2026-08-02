@@ -7,7 +7,7 @@ plattformen**. Källa till sanning: **NXT Brand Book v1.0 (2026)**.
 ## Installation
 
 ```bash
-npm i github:patriklofvin/nxt-brand#v1.2.0
+npm i github:patriklofvin/nxt-brand#v1.3.0
 ```
 
 ## Användning
@@ -72,6 +72,47 @@ markerade rader, subtila fyllningar):
 |---|---|---|
 | `--nxt-accent-50` | `color-mix(... 8%, white)` | `nxt.accent-50` |
 | `--nxt-accent-100` | `color-mix(... 16%, white)` | `nxt.accent-100` |
+
+## Neutralskala (v1.3.0)
+
+Brand book v1.0 har bläck och papper men inget däremellan, vilket ledde till att
+varje konsument uppfann sin egen gråskala. Två tokens täpper till glappet. Båda
+härleds ur bläck + papper, så de följer med om baspaletten ändras.
+
+| Token | Beräknat värde | Mot papper `#FAF7FB` | Användning | Tailwind |
+|---|---|---|---|---|
+| `--nxt-ink-soft` | `#736F78` | **4,62:1** ✓ | Sekundärtext, lede, bildtexter | `nxt.ink-soft` |
+| `--nxt-line` | `#DCD8DD` | 1,33:1 | Avdelare, ramar — **aldrig text** | `nxt.line` |
+
+**Regel: `--nxt-ink-soft` är golvet för sekundärtext.** 62 % är valt för att det är
+den lägsta andelen bläck som klarar AA — 60 % ger 4,35:1 och underkänns. Sänk
+den inte lokalt.
+
+**`--nxt-line` bär ingen information.** 1,33:1 klarar inte 3:1 (WCAG 1.4.11), så
+en ram i den färgen får aldrig vara det enda som identifierar en komponent eller
+dess tillstånd. Behöver kanten bära betydelse (fokus, valt tillstånd, fel):
+komplettera med bakgrund, ikon eller etikett, eller använd accent/status-färg.
+
+## Koncernlockup (v1.3.0)
+
+`nxt-full-primary` (violett märke + "NXT" i bläck), `nxt-full-reverse` (helvit)
+och `nxt-full-black` (1-färg). Används där **NXT som helhet** avsändare — nav,
+plattformschrome, sidfötter, dokumentomslag — medan produktlockups används när
+en specifik produkt refereras.
+
+Samma geometri som produktlockuparna: viewBox-höjd 156, märket i `translate(18,18)`,
+avdelare på x=346, text från x=376 i Sora. Frizonen är 18 enheter, mätt ur de
+befintliga produktlockuparna (spridning 0,8 enheter över alla sju).
+
+Två avvikelser mot produktlockuparna, båda avsiktliga:
+
+- Namnet sätts i **Sora 700**, inte 600 — koncernnamnet är kortare och tål den
+  tyngre graden.
+- `nxt-full-reverse` har **ingen inbakad bakgrundsyta**. Produktlockuparnas
+  reverse-filer bakar in sin egen modulfärg, vilket fungerar när lockup och yta
+  hör ihop. Koncernlockupen läggs på vilken bärande yta som helst — violett,
+  vilken modulfärg som helst, foto — så en inbakad yta hade varit fel i de
+  flesta fall. Ytan sätts av konsumenten.
 
 ## Strong-varianter (v1.2.0) — för liten vit text
 
@@ -191,10 +232,11 @@ OFL-1.1 (licensfiler i `/fonts`). Typskala: 48 / 28 / 16 / 12 px.
 
 ## Logotypfiler
 
-`logos/svg/` (24) och `logos/png/` (25, transparent 3×). Tre hanteringar
+`logos/svg/` (27) och `logos/png/` (25, transparent 3×). Tre hanteringar
 per produkt: `-primary` (ljus botten), `-reverse` (på modulfärgad yta),
 `-black` (1-färg). Fristående märke: `nxt-mark-violet/white/black` +
-`nxt-mark-violet-sig` (e-postsignatur, endast PNG).
+`nxt-mark-violet-sig` (e-postsignatur, endast PNG). Koncernlockup:
+`nxt-full-primary/reverse/black` (endast SVG i v1.3.0 — PNG-varianter saknas).
 
 ## Versionering
 

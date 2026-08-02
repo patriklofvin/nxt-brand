@@ -15,6 +15,10 @@ module.exports = {
           violet: 'var(--nxt-violet)',
           ink: 'var(--nxt-ink)',
           paper: 'var(--nxt-paper)',
+          // Neutralskala: ink-soft = sekundärtext (4,62:1 mot papper),
+          // line = avdelare/ramar (aldrig text).
+          'ink-soft': 'var(--nxt-ink-soft)',
+          line: 'var(--nxt-line)',
           accent: 'var(--nxt-accent)',
           learning: 'var(--nxt-learning)',
           studio: 'var(--nxt-studio)',
