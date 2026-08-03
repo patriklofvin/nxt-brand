@@ -1,13 +1,15 @@
 # @nxt/brand
 
 NXT design-tokens, logotyper och typsnitt — **en central källa för hela
-plattformen**. Källa till sanning: **NXT Brand Book v1.0 (2026)**.
-Ändringar görs endast här, taggas, och bumpas i konsumerande repos.
+plattformen**. Ursprung: **NXT Brand Book v1.0 (2026)**. Detta paket är
+**operativ källa till sanning** och superseder boken där uppmätta värden avviker
+— se §Versionering. Ändringar görs endast här, taggas, och bumpas i
+konsumerande repos.
 
 ## Installation
 
 ```bash
-npm i github:patriklofvin/nxt-brand#v1.3.0
+npm i github:patriklofvin/nxt-brand#v1.3.1
 ```
 
 ## Användning
@@ -242,3 +244,14 @@ per produkt: `-primary` (ljus botten), `-reverse` (på modulfärgad yta),
 
 Semver via git-taggar. Brand book-ändring ⇒ ny tagg ⇒ bumpa
 `#vX.Y.Z` i konsumerande repos `package.json`. Ingen registry behövs.
+
+**nxt-brand är operativ källa till sanning och superseder brand book v1.0 där
+uppmätta värden avviker (kontrasttabellen); boken uppdateras redaktionellt
+separat.**
+
+Bakgrunden är att bokens kontrastvärden i flera fall var för generösa — se
+»Ändrat i v1.1.2«. Konsumenter ska mäta mot detta paket, inte mot boken. Två
+konkreta fall där boken följdes och blev fel: bärnsten citerad som 3,6:1 i
+KL Studio (rätt: 3,45) och blå citerad som 4,4:1 i Compliance OS med omvänd
+slutsats (rätt: 4,68 för vit text på blått — 4,40 är blått *som textfärg mot
+papper*, alltså motsatt riktning).

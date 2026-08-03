@@ -8,7 +8,10 @@
 
 :root {
   /* ---- Primärpalett ---- */
-  --nxt-violet: #7E5A96;        /* NXT Violett — primär. ERSÄTTER #825B94 och #2563EB */
+  /* Ersätter tidigare legacy-blå/lila (se DOD-CR-BRAND-0). Legacy-värdena
+     skrivs medvetet INTE ut här: konsumenter som vendorar paketet in i sitt
+     eget träd får annars falsk träff på saneringsgaten. Slog i nxt-web. */
+  --nxt-violet: #7E5A96;        /* NXT Violett — primär */
   --nxt-ink:    #211B27;        /* Bläck — brödtext */
   --nxt-paper:  #FAF7FB;        /* Papper — ljus bakgrund */
 

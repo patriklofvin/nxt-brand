@@ -209,15 +209,25 @@ korrekta.
 ### Åtgärdslista
 
 1. **Oberoende sign-off saknas.** Granskaren skrev v1.2.0/v1.3.0. Rule 8 kräver
-   en annan part. *(Patrik/Manthan)*
+   en annan part. *(Patrik/Manthan — kvarstår. Beslut 2026-08-03: oberoendet
+   accepteras som det är, protokollens öppna deklaration räcker.)*
 2. **Brand book v1.0 finns inte som artefakt** i något repo, så DoD-punkt 3 kan
-   aldrig verifieras av någon. Lägg boken i `nxt-docs` eller omformulera
-   punkten till att avse intern konsistens. *(Patrik)*
-3. **`3b51564` buntar två omfattningspunkter.** Ingen åtgärd föreslås i
-   efterhand — noteras för kommande taggar.
+   aldrig verifieras av någon. → **ÅTGÄRDAD i v1.3.1.** README §Versionering
+   fastställer att paketet är operativ källa till sanning och superseder boken
+   där uppmätta värden avviker. Bokens redaktion är parkerad post-RC1.
+3. **`3b51564` buntar två omfattningspunkter.** Ingen åtgärd i efterhand —
+   noteras för kommande taggar. *(Kvarstår som notering.)*
 4. **Grep-gaten kan ge falsk träff** på den dokumenterande kommentaren i
-   `nxt-tokens.css:11` om ett konsumerande repo grepar bredare än `src/`.
-   Scopa gaten, eller skriv om kommentaren utan hex-literalerna.
+   `nxt-tokens.css:11`. → **ÅTGÄRDAD i v1.3.1.** Kommentaren är omformulerad
+   utan legacy-hexvärden i klartext. Fyndet materialiserades i nxt-web
+   (`DOD-CR-BRAND-8.md` punkt 1), som vendorar paketet i stället för att
+   npm-installera det.
+
+### Status efter v1.3.1
+
+Punkt 2 och 4 är åtgärdade i källan. Punkt 1 och 3 är accepterade som de är.
+Utfallet **GODKÄND MED ANMÄRKNING** står — anmärkningarna är hanterade, inte
+bortförklarade.
 
 Inget av detta blockerar merge av paketet i sig. Punkt 1 blockerar formell
 Rule 8-sign-off.
