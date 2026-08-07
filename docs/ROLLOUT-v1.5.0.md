@@ -16,18 +16,46 @@ gränssnitt byggs mellan 12 och 28 px, och där fanns ingenting. Följden var at
 KL och wise uppfann var sitt register — sju steg vardera, med 1–2 px skillnad
 på fyra av dem. Det här lägger registret i paketet, en gång.
 
-Grunden är **NXT Assist-skalan (14 px bas)**, mätt ur wise efter
-läsbarhetsfixen.
+Grunden var NXT Assist-skalan, men **justerad ner ett steg 2026-08-07** för
+enterprise-täthet. Bas är **13 px**.
 
-| Steg | Grad | Line-height | Kvot |
-|---|---|---|---|
-| `xs` | 12px | 18px | 1,50 |
-| `sm` | 13px | 20px | 1,538 |
-| `base` | **14px** | 21px | 1,50 |
-| `lg` | 16px | 24px | 1,50 |
-| `xl` | 18px | 27px | 1,50 |
-| `2xl` | 22px | 33px | 1,50 |
-| `3xl` | 26px | 39px | 1,50 |
+| Steg | Grad | Line-height | Kvot | Var (första utkast) |
+|---|---|---|---|---|
+| `xs` | 11px | 17px | 1,545 | 12/18 |
+| `sm` | 12px | 18px | 1,50 | 13/20 |
+| `base` | **13px** | 20px | 1,538 | 14/21 |
+| `lg` | 15px | 23px | 1,533 | 16/24 |
+| `xl` | 17px | 26px | 1,529 | 18/27 |
+| `2xl` | 20px | 30px | 1,50 | 22/33 |
+| `3xl` | 24px | 34px | **1,417** | 26/39 |
+
+**Varför ner.** Första utkastet ärvde wises höjda skala. Den höjningen gjordes
+med motiveringen att Sora har lägre x-höjd än Inter. Uppmätt håller det inte
+för det som faktiskt renderade — wise laddade aldrig Inter, utan föll till
+`system-ui`:
+
+| Typsnitt | x-höjd av em |
+|---|---|
+| Sora | **53,4 %** |
+| Segoe UI (`system-ui`) | 50,0 % |
+| Arial | 51,9 % |
+
+Graderna höjdes alltså för att kompensera för ett typsnitt som inte ritade
+texten. När Sora kopplades in i v1.4.0 kom höjningen ovanpå ett typsnitt som
+redan läser ~7 % större — och resultatet såg överdimensionerat ut. Sänkningen
+är i snitt **−7,4 %**, vilket ligger på x-höjdsdifferensen.
+
+**`3xl` är ett medvetet undantag** på 1,417. Regeln "alla kvoter ≥ 1,5" gäller
+alltså inte längre utan undantag. 1,5 är brödtextsluft och blir slappt på en
+rubrik. WCAG 1.4.12 kräver att användaren ska *kunna* sätta 1,5 utan att
+layouten går sönder — inte att författaren gör det. Vill man ha invarianten
+utan undantag är 36 rätt värde för `3xl`.
+
+**`body` och `label` är inte längre alias.** De pekade in i registret när `lg`
+råkade vara 16 px och `xs` 12 px. Efter sänkningen är `lg` 15 och `xs` 11, så
+aliasen hade tyst gjort brand book:s brödtext till 15 px och etiketten till
+11 px — en varumärkesändring insmugen via en UI-justering. Båda har egna
+värden igen (16 respektive 12 px).
 
 Varumärkesgraderna `display` (48) och `heading` (28) är oförändrade och ligger
 kvar ovanför registret.
@@ -45,18 +73,15 @@ tupler, alltså enbart åtkomliga för Tailwind v3. KL kör v4 och läser CSS-
 variabler via `@theme`. Utan variabelburen leading kan v4-sidan inte återskapa
 paren, och kravet på kvoter ≥ 1,5 tappas på vägen.
 
-**`body` och `label` blev roller, inte grader.** De alias:ar nu in i registret
-(`body` → `lg`, `label` → `xs`) så att varje px-tal har exakt en definition.
-
 > **Läs den här raden.** Brand book:s brödtext **16 px är inte gränssnittets
-> bastext**. UI-basen är `--nxt-text-base` = **14 px**. 16 px är läsgraden på
+> bastext**. UI-basen är `--nxt-text-base` = **13 px**. 16 px är läsgraden på
 > marknads- och innehållsytor. Blandas de ihop får hela gränssnittet fel
 > grundgrad.
 
-`3xl` är det enda steget som inte kommer ur wises kurerade skala — där föll
-`text-3xl` igenom till Tailwinds default och skalades av 81,25 %-roten till
-~24,4 px. 26 px är wises egen token-nivå, nu satt medvetet i stället för av
-misstag.
+`3xl` kommer inte ur wises kurerade skala — där slutade blocket vid `2xl`, så
+`text-3xl` föll igenom till Tailwinds default och skalades av 81,25 %-roten
+till ~24,4 px. 24 px är alltså i praktiken samma grad wise redan visade, nu
+satt medvetet i stället för av misstag.
 
 ## 3. Varning — additivt i tokens, brytande i presetet
 
@@ -69,10 +94,14 @@ register — men konsekvensen skiljer sig per app:
 
 | App | Tailwind | Effekt av enbart pinne-bump |
 |---|---|---|
-| **wise** | v3 | **Ingen.** Samma siffror som dess lokala block redan sätter. Blocket kan tas bort efteråt. |
-| **KL Studio** | v4 | **Ingen.** Presetet gäller inte i v4; KL måste peka sitt `@theme` mot variablerna för att ärva. |
+| **wise** | v3 | **Texten krymper ett steg.** Wises lokala block sätter 12/13/14/16/18/22; registret sätter 11/12/13/15/17/20. Det lokala blocket vinner tills det tas bort — men presetets `3xl` (24) slår igenom direkt, eftersom wise inte definierar det steget. |
+| **KL Studio** | v4 | **Ingen.** Presetet gäller inte i v4; KL måste peka sitt `@theme` mot variablerna för att ärva. **Räkna med stor förändring när den gör det** — KL kör bas 16 px mot registrets 13. |
 | **Compliance OS** | v3 | **Typografin ändras.** Appen lutar sig på Tailwinds default och får nya grader enbart av att pinnen flyttas. |
 | **NXT Admin** | v3 | Konsumerar inte paketet i dag. Gäller först vid adoption. |
+
+> Raden om wise ändrades 2026-08-07. I första utkastet stod "Ingen — samma
+> siffror". Det gällde när registret ärvde wises höjda skala. Efter
+> nersänkningen gör det inte det längre.
 
 Adoption är alltså **opt-in per app**, men för en v3-app som inte redan
 överstyr är en bump inte opt-in — den räcker. Compliance OS ska inte bumpas

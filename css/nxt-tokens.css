@@ -106,44 +106,64 @@
      leading kan Tailwind v4 (@theme, CSS-first) inte återskapa paren — den
      läser variabler, inte presetens tupler — och kvoten tappas.
 
-     Varje kvot ligger på minst 1,5 (WCAG 1.4.12 för brödtext). sm ligger på
-     1,538 därför att 13 px inte delar jämnt. Sora har lägre x-höjd än Inter,
-     så samma px ger visuellt mindre text; kvoterna är satta med det i åtanke.
+     JUSTERAD NER 2026-08-07 — enterprise-täthet.
 
-     3xl är det enda steg som inte kommer ur wises kurerade skala — där föll
-     `text-3xl` igenom till Tailwinds default. 26 px är wises egen token-nivå,
-     nu satt medvetet i stället för av misstag.
+     Första versionen ärvde wises höjda skala (12/13/14/16/18/22). Den höjdes
+     i sin tur med motiveringen att Sora har lägre x-höjd än Inter och därför
+     läser mindre. Uppmätt stämmer det inte för det som faktiskt renderade:
 
-     OBS: 1,5 på 2xl och 3xl är generöst för en rubrik; typografiskt vill man
-     ofta ner mot 1,2–1,3 där. Det är satt så för att kravet "alla kvoter ≥ 1,5"
-     ska gälla utan undantag. Upplevs det luftigt är det de stegens kvot som
-     ska ner, inte de andras. */
+         Sora      x-höjd 53,4 % av em
+         Segoe UI  x-höjd 50,0 %   ← det wise faktiskt visade (system-ui)
+         Arial     x-höjd 51,9 %
+
+     wise laddade aldrig Inter. Graderna höjdes alltså för att kompensera för
+     ett typsnitt som inte ritade texten, och när Sora väl kopplades in kom
+     höjningen ovanpå ett typsnitt som redan läser ~7 % större. Registret är
+     nu sänkt ett steg, vilket i snitt är −7,4 % och därmed ligger på
+     x-höjdsdifferensen.
+
+     Kvoterna: brödtextsstegen xs–2xl ligger alla på ≥ 1,5 (WCAG 1.4.12).
+     `sm` och `2xl` landar exakt på 1,50; övriga något över eftersom udda
+     px-tal inte delar jämnt.
+
+     3xl ÄR ETT MEDVETET UNDANTAG på 1,417 (24/34). Regeln "alla kvoter ≥ 1,5"
+     gäller alltså inte längre utan undantag. Skälet: 1,5 är brödtextsluft och
+     blir slappt på en rubrik — 24/36 hade gett ett synligt glapp mellan
+     rubrikrader. WCAG 1.4.12 handlar om att användaren ska KUNNA sätta 1,5
+     utan att layouten går sönder, inte om att författaren måste göra det. Vill
+     man ändå ha invarianten utan undantag är 36 rätt värde. */
   /* En deklaration per rad — annars missar grep/lint den andra på raden. */
-  --nxt-text-xs:      12px;   /* xs   1,50 */
-  --nxt-leading-xs:   18px;
-  --nxt-text-sm:      13px;   /* sm   1,538 — 13 delar inte jämnt */
-  --nxt-leading-sm:   20px;
-  --nxt-text-base:    14px;   /* base 1,50 — UI-BAS */
-  --nxt-leading-base: 21px;
-  --nxt-text-lg:      16px;   /* lg   1,50 */
-  --nxt-leading-lg:   24px;
-  --nxt-text-xl:      18px;   /* xl   1,50 */
-  --nxt-leading-xl:   27px;
-  --nxt-text-2xl:     22px;   /* 2xl  1,50 */
-  --nxt-leading-2xl:  33px;
-  --nxt-text-3xl:     26px;   /* 3xl  1,50 */
-  --nxt-leading-3xl:  39px;
+  --nxt-text-xs:      11px;   /* xs   1,545 */
+  --nxt-leading-xs:   17px;
+  --nxt-text-sm:      12px;   /* sm   1,50 */
+  --nxt-leading-sm:   18px;
+  --nxt-text-base:    13px;   /* base 1,538 — UI-BAS */
+  --nxt-leading-base: 20px;
+  --nxt-text-lg:      15px;   /* lg   1,533 */
+  --nxt-leading-lg:   23px;
+  --nxt-text-xl:      17px;   /* xl   1,529 */
+  --nxt-leading-xl:   26px;
+  --nxt-text-2xl:     20px;   /* 2xl  1,50 */
+  --nxt-leading-2xl:  30px;
+  --nxt-text-3xl:     24px;   /* 3xl  1,417 — UNDANTAG, se nedan */
+  --nxt-leading-3xl:  34px;
 
-  /* ---- Roller som pekar in i registret ----
-     `label` och `body` är ROLLER, inte egna grader. De alias:as hit så att
-     varje px-tal har exakt EN definition — annars driver de isär.
+  /* ---- Varumärkesroller — EGNA grader igen ----
+     I den första versionen alias:ade `body` till `lg` och `label` till `xs`,
+     eftersom registret då råkade ha 16 respektive 12 px på de platserna. Efter
+     nersänkningen gör det inte det: `lg` är 15 px och `xs` är 11 px.
 
-     LÄS DEN HÄR RADEN: brand book:s brödtext (16 px) är INTE gränssnittets
-     bastext. UI-basen är `--nxt-text-base` = 14 px. 16 px är läsgraden på
-     marknads- och innehållsytor, och sammanfaller med registrets `lg`.
-     Blandas de ihop får hela gränssnittet fel grundgrad. */
-  --nxt-text-body:  var(--nxt-text-lg);   /* 16px — brand book:s läsgrad */
-  --nxt-text-label: var(--nxt-text-xs);   /* 12px + versaler + 0,06em */
+     Aliasen är därför borttagna. Hade de fått stå kvar hade brand book:s
+     brödtext tyst blivit 15 px och etiketten 11 px — en varumärkesändring
+     smugen in via en UI-justering. Priset är att 16 och 12 px nu har varsin
+     egen definition igen; det är rätt pris.
+
+     LÄS DEN HÄR RADEN: brand book:s brödtext 16 px är INTE gränssnittets
+     bastext. UI-basen är `--nxt-text-base` = 13 px. 16 px är läsgraden på
+     marknads- och innehållsytor. Blandas de ihop får hela gränssnittet fel
+     grundgrad. */
+  --nxt-text-body:  16px;   /* brand book §07 — läsgrad, ej UI-bas */
+  --nxt-text-label: 12px;   /* brand book §07 — versaler + 0,06em */
 
   /* Leading för varumärkesgraderna är kvoter, inte px: de behåller exakt de
      värden presetet haft sedan v1.0 och ska inte ändras av det här tillägget.

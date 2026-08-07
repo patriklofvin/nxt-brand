@@ -234,14 +234,14 @@ OFL-1.1 (licensfiler i `/fonts`).
 
 **Varumärkesgrader (brand book §07):** 48 / 28 px — display och rubrik.
 
-**UI-register (v1.5.0):** 12 / 13 / 14 / 16 / 18 / 22 / 26 px med line-height
-18 / 20 / 21 / 24 / 27 / 33 / 39. Absoluta px, alla kvoter ≥ 1,5. Bas är
-**14 px** (`--nxt-text-base`).
+**UI-register (v1.5.0):** 11 / 12 / 13 / 15 / 17 / 20 / 24 px med line-height
+17 / 18 / 20 / 23 / 26 / 30 / 34. Absoluta px. Bas är
+**13 px** (`--nxt-text-base`). Kvoter ≥ 1,5 utom `3xl` (1,417 — medvetet).
 
-Brand book:s brödtext 16 px är läsgraden på marknads- och innehållsytor och
-sammanfaller med registrets `lg` — den är **inte** gränssnittets bastext.
-`--nxt-text-body` och `--nxt-text-label` alias:ar in i registret så att varje
-px-tal har en definition.
+Brand book:s brödtext 16 px är läsgraden på marknads- och innehållsytor — den
+är **inte** gränssnittets bastext. Efter nersänkningen 2026-08-07 sammanfaller
+`--nxt-text-body` (16 px) och `--nxt-text-label` (12 px) inte längre med något
+UI-steg, och har därför egna värden i stället för att alias:a in i registret.
 
 ## Logotypfiler
 
