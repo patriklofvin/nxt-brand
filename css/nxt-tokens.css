@@ -73,6 +73,18 @@
   --nxt-font-sans: 'Sora', system-ui, sans-serif;          /* 300/400/600/700 */
   --nxt-font-mono: 'JetBrains Mono', ui-monospace, monospace; /* 400/500 */
 
+  /* Beslut 2026-08-07: ALLT ÄR SORA. Ingen redaktionell serif.
+     `display` är kvar som NAMN därför att apparna har ~14 respektive alla
+     h1–h3 bundna till `font-display`/`--font-display`. Namnet pekar nu på
+     samma familj i stället för att tas bort, så att inget anrop bryts —
+     men det finns ingen serif bakom det längre.
+
+     Bakgrunden: KL svarade Playfair Display, wise svarade DM Serif Display,
+     paketet svarade ingenting. Två olika svar på en fråga som aldrig ställts,
+     och wises variant var dessutom aldrig laddad — den föll till Georgia,
+     alltså Times. */
+  --nxt-font-display: var(--nxt-font-sans);
+
   /* Skala — digitalt (px per brand book §07) */
   --nxt-text-display: 48px;   /* Display */
   --nxt-text-heading: 28px;   /* Rubrik */
@@ -83,4 +95,26 @@
      Mono-lockup (violett + bläck) på neutrala ytor.
      Modulfärg som bärande yta => vit reverserad lockup.
      Minst 4,5:1 kontrast (WCAG AA). Märket färgas aldrig om. */
+}
+
+/* ============================================================
+   TILLÄMPAD GRUNDFAMILJ
+   ============================================================
+   Paketet SÄTTER familjen, inte bara namnger den.
+
+   Fram till nu erbjöd paketet `--nxt-font-sans` och hoppades att någon
+   använde den. Utfallet: KL gjorde det, wise definierade om `--font-sans`
+   till DM Sans i en fil som importeras efter tokens — och eftersom DM Sans
+   aldrig laddades föll hela gränssnittet till system-ui. Sora hämtades ner
+   och användes inte på en enda yta.
+
+   Med regeln här blir "ärver Sora" utgångsläget och avsteg ett aktivt val.
+
+   OBS — detta täcker det ÄRVDA värdet. En app som dessutom har egna
+   `--font-sans`/`--font-display` eller en egen Tailwind-`fontFamily` kan
+   fortfarande skriva över `font-sans`-klassen. Regeln som hör ihop med den
+   här filen: INGEN APP DEFINIERAR OM --font-sans EFTER PAKETIMPORTEN.
+   Se ROLLOUT-v1.4.0-familjelager.md §4 för raderna som ska bort per app. */
+html {
+  font-family: var(--nxt-font-sans);
 }
