@@ -74,7 +74,10 @@ module.exports = {
        * Se ROLLOUT-v1.5.0.md.
        */
       fontSize: {
-        // UI-register (NXT Assist-skalan, 14px bas)
+        // UI-register (13px bas)
+        // 2xs är ett GOLV för etiketter och metadata, inte ett vanligt steg.
+        // Ingenting under det ska tillkomma — se nxt-tokens.css.
+        '2xs': ['var(--nxt-text-2xs)', { lineHeight: 'var(--nxt-leading-2xs)' }],
         xs: ['var(--nxt-text-xs)', { lineHeight: 'var(--nxt-leading-xs)' }],
         sm: ['var(--nxt-text-sm)', { lineHeight: 'var(--nxt-leading-sm)' }],
         base: ['var(--nxt-text-base)', { lineHeight: 'var(--nxt-leading-base)' }],

@@ -234,8 +234,8 @@ OFL-1.1 (licensfiler i `/fonts`).
 
 **Varumärkesgrader (brand book §07):** 48 / 28 px — display och rubrik.
 
-**UI-register (v1.5.0):** 11 / 12 / 13 / 15 / 17 / 20 / 24 px med line-height
-17 / 18 / 20 / 23 / 26 / 30 / 34. Absoluta px. Bas är
+**UI-register (v1.5.0):** 10 / 11 / 12 / 13 / 15 / 17 / 20 / 24 px med line-height
+15 / 17 / 18 / 20 / 23 / 26 / 30 / 34. Absoluta px. Bas är
 **13 px** (`--nxt-text-base`). Kvoter ≥ 1,5 utom `3xl` (1,417 — medvetet).
 
 Brand book:s brödtext 16 px är läsgraden på marknads- och innehållsytor — den

@@ -130,9 +130,24 @@
      gäller alltså inte längre utan undantag. Skälet: 1,5 är brödtextsluft och
      blir slappt på en rubrik — 24/36 hade gett ett synligt glapp mellan
      rubrikrader. WCAG 1.4.12 handlar om att användaren ska KUNNA sätta 1,5
-     utan att layouten går sönder, inte om att författaren måste göra det. Vill
-     man ändå ha invarianten utan undantag är 36 rätt värde. */
+     utan att layouten går sönder, inte om att författaren måste göra det.
+     Beslut 2026-08-08: 34 står kvar. 3xl är enda rent rubrikbärande steget;
+     alla brödtextsnära steg (2xs–2xl) ligger på ≥ 1,5. Vill man ändå ha
+     invarianten utan undantag är 36 rätt värde och en rad att ändra.
+
+     2xs ÄR ETT GOLV, INTE ETT VANLIGT STEG.
+     Det tillkom 2026-08-08 för att wise hade 106 noder hårdkodade på 10 px —
+     etiketter, metadata, taggar — som annars stått utanför systemet för alltid.
+     Alternativet hade varit att runda upp dem till xs (11 px), vilket gjort
+     dem STÖRRE mitt i en omläggning vars syfte var täthet.
+
+     Att steget finns är inte en inbjudan att använda det. 10 px är under vad
+     de flesta gränssnitt bör ha som minsta grad, och det ska inte bära något
+     en användare måste kunna läsa obehindrat. Ingenting under 2xs ska
+     tillkomma: 9 px och mindre höjs hit i stället för att få egna namn. */
   /* En deklaration per rad — annars missar grep/lint den andra på raden. */
+  --nxt-text-2xs:     10px;   /* 2xs  1,50 — GOLV, se nedan */
+  --nxt-leading-2xs:  15px;
   --nxt-text-xs:      11px;   /* xs   1,545 */
   --nxt-leading-xs:   17px;
   --nxt-text-sm:      12px;   /* sm   1,50 */

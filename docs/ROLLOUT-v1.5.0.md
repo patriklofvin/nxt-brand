@@ -21,6 +21,7 @@ enterprise-täthet. Bas är **13 px**.
 
 | Steg | Grad | Line-height | Kvot | Var (första utkast) |
 |---|---|---|---|---|
+| `2xs` | 10px | 15px | 1,50 | — (nytt) |
 | `xs` | 11px | 17px | 1,545 | 12/18 |
 | `sm` | 12px | 18px | 1,50 | 13/20 |
 | `base` | **13px** | 20px | 1,538 | 14/21 |
@@ -44,6 +45,13 @@ Graderna höjdes alltså för att kompensera för ett typsnitt som inte ritade
 texten. När Sora kopplades in i v1.4.0 kom höjningen ovanpå ett typsnitt som
 redan läser ~7 % större — och resultatet såg överdimensionerat ut. Sänkningen
 är i snitt **−7,4 %**, vilket ligger på x-höjdsdifferensen.
+
+**`2xs` är ett golv, inte ett vanligt steg.** Det tillkom 2026-08-08 för att
+wise hade 106 noder hårdkodade på 10 px — etiketter, metadata, taggar — som
+annars stått utanför systemet för alltid. Alternativet, att runda upp dem till
+`xs`, hade gjort dem större mitt i en omläggning vars syfte var täthet. Att
+steget finns är inte en inbjudan att använda det, och ingenting under det ska
+tillkomma: 9 px och mindre höjs hit.
 
 **`3xl` är ett medvetet undantag** på 1,417. Regeln "alla kvoter ≥ 1,5" gäller
 alltså inte längre utan undantag. 1,5 är brödtextsluft och blir slappt på en
@@ -123,10 +131,10 @@ Ett beslut för granskningen, inte för mig.
 
 Ingen app är rörd i den här leveransen. När registret är granskat:
 
-- **wise** — ta bort `fontSize`-blocket i `tailwind.config.ts` och de sju
-  `--text-*` i `src/styles/tokens.css`. Kvar står `text-3xl`, som i dag ligger
-  utanför den kurerade skalan, och de 106 `text-[10px]` + 26 `text-[11px]` som
-  förbigår skalan helt.
+- **wise** — utfört på `feat/brand-v150-skala`: `fontSize`-blocket och de sju
+  `--text-*` borttagna, och samtliga 138 hårdkodade grader inflyttade i
+  registret (26 × 11px → `xs`, 106 × 10px → `2xs`, 6 × 9px höjda till `2xs`).
+  Ingen nod står längre utanför systemet.
 - **KL Studio** — mappa `--text-*` i `@theme` mot `--nxt-text-*` /
   `--nxt-leading-*` och ta bort de sju egna värdena i `src/styles/tokens.css`.
 - **Compliance OS / NXT Admin** — se §3 innan pinnen flyttas.
