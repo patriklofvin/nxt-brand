@@ -42,9 +42,19 @@ module.exports = {
           'accent-100': 'var(--nxt-accent-100)',
         },
       },
+      /* Familjerna pekar på samma custom properties som nxt-tokens.css
+         definierar, i stället för att upprepa listorna här. Annars finns
+         familjen på två ställen och bara Tailwind v3 når den — KL kör v4 och
+         läser variabler via @theme.
+
+         `display` är nytt och pekar på sans: beslutet 2026-08-07 är att allt
+         är Sora. Nyckeln finns för att apparna har `font-display` bundet på
+         ~14 ställen i KL och på samtliga h1–h3 i wise; den pekar om dem i
+         stället för att bryta dem. */
       fontFamily: {
-        sans: ['Sora', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+        sans: ['var(--nxt-font-sans)'],
+        mono: ['var(--nxt-font-mono)'],
+        display: ['var(--nxt-font-display)'],
       },
       /**
        * Presetet är en ADAPTER, inte en andra källa.

@@ -15,6 +15,17 @@
   font-display: swap;
   src: url('../fonts/sora-latin-400-normal.woff2') format('woff2');
 }
+/* 500 tillkom 2026-08-07. Utan den matchade CSS ned till 400, och de 402
+   `font-medium`-ställena (167 KL + 235 wise) samt paketets eget `nxt-label`
+   renderades som normal vikt. Subsettad ur den officiella Sora-Medium.ttf
+   (OFL-1.1) mot exakt samma 223 codepoints som de övriga fyra. */
+@font-face {
+  font-family: 'Sora';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/sora-latin-500-normal.woff2') format('woff2');
+}
 @font-face {
   font-family: 'Sora';
   font-style: normal;
