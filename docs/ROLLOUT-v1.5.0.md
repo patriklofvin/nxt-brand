@@ -1,11 +1,15 @@
-# Utrullning — @nxt/brand v1.4.0
+# Utrullning — @nxt/brand v1.5.0 (skalelager)
 
-**Tagg:** `v1.4.0` (ej satt ännu — väntar granskning) · **Källa till sanning:** NXT Brand Book v1.0 (2026)
-**Föregående utrullning:** `docs/ROLLOUT-v1.3.0.md`
+**Tagg:** `v1.5.0` (ej satt ännu — väntar granskning) · **Källa till sanning:** NXT Brand Book v1.0 (2026)
+**Föregående utrullning:** `docs/ROLLOUT-v1.4.0-familjelager.md`
+
+> **Ordningen är bestämd.** Familjelagret (`feat/font-familj-sora`) tar 1.4.0
+> eftersom det rättar ett synligt produktionsfel. Det här skalelagret följer som
+> 1.5.0. Separata leveranser — de ska inte slås ihop.
 
 ---
 
-## 1. Vad v1.4.0 tillför
+## 1. Vad v1.5.0 tillför
 
 **Ett UI-register.** Brand book §07 ger fyra grader: 48 / 28 / 16 / 12 px. Ett
 gränssnitt byggs mellan 12 och 28 px, och där fanns ingenting. Följden var att
@@ -76,10 +80,12 @@ utan att någon tittar på typografin i samma leverans.
 
 ## 4. Versionsval
 
-Satt till **1.4.0**. Argumentet för `2.0.0` är att presetet tar över nycklar
+Satt till **1.5.0** — familjelagret tog 1.4.0.
+
+Argumentet för `2.0.0` kvarstår oberoende av numret: presetet tar över nycklar
 det inte ägde förut, vilket ändrar renderad output för en oförberedd
-v3-konsument — och semver ska bära den varningen, inte en README. Argumentet
-för `1.4.0` är att inga befintliga tokens ändrar värde och att de två faktiska
+v3-konsument, och semver ska bära den varningen — inte en README. Argumentet
+för en minor är att inga befintliga tokens ändrar värde och att de två faktiska
 konsumenterna (wise, KL) är opåverkade av bumpen i sig.
 
 Ett beslut för granskningen, inte för mig.

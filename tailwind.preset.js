@@ -61,7 +61,7 @@ module.exports = {
        * alla v3-konsumenter. Det är avsikten — det är så en app slipper
        * underhålla ett eget register — men en app som i dag lutar sig mot
        * Tailwinds default får nya grader enbart av att flytta pinnen.
-       * Se ROLLOUT-v1.4.0.md.
+       * Se ROLLOUT-v1.5.0.md.
        */
       fontSize: {
         // UI-register (NXT Assist-skalan, 14px bas)
