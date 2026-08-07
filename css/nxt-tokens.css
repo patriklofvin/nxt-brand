@@ -70,7 +70,7 @@
   --nxt-accent-strong: var(--nxt-learning);
 
   /* ---- Typografi ---- */
-  --nxt-font-sans: 'Sora', system-ui, sans-serif;          /* 300/400/600/700 */
+  --nxt-font-sans: 'Sora', system-ui, sans-serif;     /* 300/400/500/600/700 */
   --nxt-font-mono: 'JetBrains Mono', ui-monospace, monospace; /* 400/500 */
 
   /* Beslut 2026-08-07: ALLT ÄR SORA. Ingen redaktionell serif.
