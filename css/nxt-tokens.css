@@ -73,11 +73,73 @@
   --nxt-font-sans: 'Sora', system-ui, sans-serif;          /* 300/400/600/700 */
   --nxt-font-mono: 'JetBrains Mono', ui-monospace, monospace; /* 400/500 */
 
-  /* Skala — digitalt (px per brand book §07) */
+  /* ---- Skala: varumärke (px per brand book §07) ----
+     Display och rubrik ligger OVANFÖR UI-registret nedan. De hör hemma på
+     marknadsytor, omslag och lockups — inte som gränssnittsgrader. */
   --nxt-text-display: 48px;   /* Display */
   --nxt-text-heading: 28px;   /* Rubrik */
-  --nxt-text-body:    16px;   /* Brödtext */
-  --nxt-text-label:   12px;   /* Etikett (uppercase, mono) */
+
+  /* ---- Skala: UI-register ----
+     Brand book §07 ger fyra grader. Ett gränssnitt byggs mellan 12 och 28 px,
+     och där fanns ingenting — så KL och wise uppfann var sitt register. Det
+     här är samma register, en gång, som enda källa.
+     Grunden är NXT Assist-skalan (14 px bas).
+
+     ABSOLUTA PX, INTE REM — avsiktligt. wise sätter `html { font-size: 81.25% }`
+     för att hålla Tailwinds rem-baserade spacing tät. Rem-värden här hade
+     skalats av den roten och gett fel grader i wise men rätt i KL. Px är det
+     enda som ger samma resultat i båda, utan att någon app behöver röra sin rot.
+
+     Line-height i px och som EGEN variabel per steg. Utan variabelburen
+     leading kan Tailwind v4 (@theme, CSS-first) inte återskapa paren — den
+     läser variabler, inte presetens tupler — och kvoten tappas.
+
+     Varje kvot ligger på minst 1,5 (WCAG 1.4.12 för brödtext). sm ligger på
+     1,538 därför att 13 px inte delar jämnt. Sora har lägre x-höjd än Inter,
+     så samma px ger visuellt mindre text; kvoterna är satta med det i åtanke.
+
+     3xl är det enda steg som inte kommer ur wises kurerade skala — där föll
+     `text-3xl` igenom till Tailwinds default. 26 px är wises egen token-nivå,
+     nu satt medvetet i stället för av misstag.
+
+     OBS: 1,5 på 2xl och 3xl är generöst för en rubrik; typografiskt vill man
+     ofta ner mot 1,2–1,3 där. Det är satt så för att kravet "alla kvoter ≥ 1,5"
+     ska gälla utan undantag. Upplevs det luftigt är det de stegens kvot som
+     ska ner, inte de andras. */
+  /* En deklaration per rad — annars missar grep/lint den andra på raden. */
+  --nxt-text-xs:      12px;   /* xs   1,50 */
+  --nxt-leading-xs:   18px;
+  --nxt-text-sm:      13px;   /* sm   1,538 — 13 delar inte jämnt */
+  --nxt-leading-sm:   20px;
+  --nxt-text-base:    14px;   /* base 1,50 — UI-BAS */
+  --nxt-leading-base: 21px;
+  --nxt-text-lg:      16px;   /* lg   1,50 */
+  --nxt-leading-lg:   24px;
+  --nxt-text-xl:      18px;   /* xl   1,50 */
+  --nxt-leading-xl:   27px;
+  --nxt-text-2xl:     22px;   /* 2xl  1,50 */
+  --nxt-leading-2xl:  33px;
+  --nxt-text-3xl:     26px;   /* 3xl  1,50 */
+  --nxt-leading-3xl:  39px;
+
+  /* ---- Roller som pekar in i registret ----
+     `label` och `body` är ROLLER, inte egna grader. De alias:as hit så att
+     varje px-tal har exakt EN definition — annars driver de isär.
+
+     LÄS DEN HÄR RADEN: brand book:s brödtext (16 px) är INTE gränssnittets
+     bastext. UI-basen är `--nxt-text-base` = 14 px. 16 px är läsgraden på
+     marknads- och innehållsytor, och sammanfaller med registrets `lg`.
+     Blandas de ihop får hela gränssnittet fel grundgrad. */
+  --nxt-text-body:  var(--nxt-text-lg);   /* 16px — brand book:s läsgrad */
+  --nxt-text-label: var(--nxt-text-xs);   /* 12px + versaler + 0,06em */
+
+  /* Leading för varumärkesgraderna är kvoter, inte px: de behåller exakt de
+     värden presetet haft sedan v1.0 och ska inte ändras av det här tillägget.
+     `body` delar px med `lg` men har egen leading — samma grad, olika roll. */
+  --nxt-leading-display: 1.1;
+  --nxt-leading-heading: 1.2;
+  --nxt-leading-body:    1.6;
+  --nxt-leading-label:   1.3;
 
   /* ---- Ytregler (brand book §06) ----
      Mono-lockup (violett + bläck) på neutrala ytor.

@@ -230,7 +230,18 @@ AA-trösklar: **4,5:1** för normal text, **3,0:1** för stor text
 
 Sora 300/400/600/700 (rubriker, lockups, brödtext) och JetBrains Mono
 400/500 (etiketter, metadata, kod). Self-hostade woff2, latin subset,
-OFL-1.1 (licensfiler i `/fonts`). Typskala: 48 / 28 / 16 / 12 px.
+OFL-1.1 (licensfiler i `/fonts`).
+
+**Varumärkesgrader (brand book §07):** 48 / 28 px — display och rubrik.
+
+**UI-register (v1.4.0):** 12 / 13 / 14 / 16 / 18 / 22 / 26 px med line-height
+18 / 20 / 21 / 24 / 27 / 33 / 39. Absoluta px, alla kvoter ≥ 1,5. Bas är
+**14 px** (`--nxt-text-base`).
+
+Brand book:s brödtext 16 px är läsgraden på marknads- och innehållsytor och
+sammanfaller med registrets `lg` — den är **inte** gränssnittets bastext.
+`--nxt-text-body` och `--nxt-text-label` alias:ar in i registret så att varje
+px-tal har en definition.
 
 ## Logotypfiler
 
