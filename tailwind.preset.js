@@ -40,6 +40,20 @@ module.exports = {
           info: 'var(--nxt-info)',
           'accent-50': 'var(--nxt-accent-50)',
           'accent-100': 'var(--nxt-accent-100)',
+          // Neutralregister (v1.6.0). Samma tio steg som CSS-variablerna —
+          // v3 når dem här, v4 via @theme. 50–400 bär aldrig text; se
+          // nxt-tokens.css för kontrast och regel per steg.
+          surface: 'var(--nxt-surface)',
+          'neutral-50': 'var(--nxt-neutral-50)',
+          'neutral-100': 'var(--nxt-neutral-100)',
+          'neutral-200': 'var(--nxt-neutral-200)',
+          'neutral-300': 'var(--nxt-neutral-300)',
+          'neutral-400': 'var(--nxt-neutral-400)',
+          'neutral-500': 'var(--nxt-neutral-500)',
+          'neutral-600': 'var(--nxt-neutral-600)',
+          'neutral-700': 'var(--nxt-neutral-700)',
+          'neutral-800': 'var(--nxt-neutral-800)',
+          'neutral-900': 'var(--nxt-neutral-900)',
         },
       },
       /* Familjerna pekar på samma custom properties som nxt-tokens.css

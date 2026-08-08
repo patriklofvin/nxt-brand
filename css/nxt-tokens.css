@@ -26,7 +26,54 @@
   /* ^ #DCD8DD — 1,33:1 mot papper. AVDELARE OCH RAMAR, aldrig text.
        Klarar inte 3:1 (WCAG 1.4.11), så den får aldrig vara det enda
        som identifierar en komponent eller dess tillstånd — lägg då till
-       bakgrund, ikon eller etikett. */
+       bakgrund, ikon eller etikett. Behöver kanten bära betydelse:
+       använd `--nxt-neutral-400`, som är satt just för det. */
+
+  /* ---- Neutralregister (v1.6.0) ----
+     Brand book ger bläck och papper. Ett gränssnitt behöver stegen däremellan,
+     och där fanns bara `ink-soft` och `line` — två tokens mot de tio ett UI
+     faktiskt använder. Följden var att varje modul uppfann sin egen gråskala:
+     wise och KL en stengrå (#FAFAF9/#171717), Testcenter en kall slate
+     (#f8fafc/#0f172a). Ingen av dem är varumärkets varma, violettonade grund.
+
+     Härledda med samma metod som `ink-soft` (62 %) och `line` (14 %) redan
+     använder, så hela skalan följer med om baspaletten ändras. Fyra steg är
+     ankare och pekar på befintliga tokens — det finns alltså fortfarande bara
+     EN definition per färg.
+
+     Kontrasten är UPPMÄTT mot papper, inte antagen. Räknaren validerad mot
+     paketets egna facit: 62 % ger 4,62:1 och 14 % ger 1,33:1.
+
+       steg  bläck  hex       mot papper   får bära
+       50      0%   #FAF7FB    1,00:1      sidbakgrund
+       100     6%   #EDEAEE    1,12:1      subtil yta
+       200    14%   #DCD8DD    1,33:1      avdelare, dekorativ ram
+       300    26%   #C2BEC4    1,72:1      tydligare dekorativ ram
+       400    48%   #928D95    3,06:1      RAM SOM BÄR BETYDELSE (1.4.11)
+       500    62%   #736F78    4,62:1      sekundärtext — GOLVET
+       600    72%   #5E5962    6,41:1      text
+       700    82%   #48434D    9,04:1      text
+       800    90%   #37313C   11,85:1      text
+       900   100%   #211B27   15,80:1      primärtext
+
+     REGELN: 50–400 får INTE bära text. 400 är satt till 48 % just för att
+     korsa 3:1 — under det kan en ram inte vara det enda som identifierar en
+     komponent. 500 är golvet för sekundärtext och ska inte sänkas lokalt. */
+  --nxt-neutral-50:  var(--nxt-paper);
+  --nxt-neutral-100: color-mix(in srgb, var(--nxt-ink) 6%,  var(--nxt-paper));
+  --nxt-neutral-200: var(--nxt-line);
+  --nxt-neutral-300: color-mix(in srgb, var(--nxt-ink) 26%, var(--nxt-paper));
+  --nxt-neutral-400: color-mix(in srgb, var(--nxt-ink) 48%, var(--nxt-paper));
+  --nxt-neutral-500: var(--nxt-ink-soft);
+  --nxt-neutral-600: color-mix(in srgb, var(--nxt-ink) 72%, var(--nxt-paper));
+  --nxt-neutral-700: color-mix(in srgb, var(--nxt-ink) 82%, var(--nxt-paper));
+  --nxt-neutral-800: color-mix(in srgb, var(--nxt-ink) 90%, var(--nxt-paper));
+  --nxt-neutral-900: var(--nxt-ink);
+
+  /* Vit yta PÅ papper — kort, paneler, tabellrader. Brand book saknar token
+     för det: papper är sidan, inte kortet. Utan den hårdkodade varje modul
+     `#ffffff` på egen hand, vilket är samma glapp som neutralskalan hade. */
+  --nxt-surface: #FFFFFF;
 
   /* ---- Modulfärger (accenter — aldrig dominerande textyta) ---- */
   --nxt-learning:   #7E5A96;    /* NXT Learning — kärnplattform/LMS */

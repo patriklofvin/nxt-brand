@@ -86,6 +86,30 @@ härleds ur bläck + papper, så de följer med om baspaletten ändras.
 | `--nxt-ink-soft` | `#736F78` | **4,62:1** ✓ | Sekundärtext, lede, bildtexter | `nxt.ink-soft` |
 | `--nxt-line` | `#DCD8DD` | 1,33:1 | Avdelare, ramar — **aldrig text** | `nxt.line` |
 
+## Neutralregister (v1.6.0)
+
+Tio steg härledda ur bläck + papper med samma `color-mix`-metod. Fyra är ankare
+(`50`=paper, `200`=line, `500`=ink-soft, `900`=ink), sex härledda. Kontrasten
+mot papper är uppmätt per steg.
+
+| Steg | Hex | Mot papper | Får bära |
+|---|---|---|---|
+| `nxt.neutral-50` | `#FAF7FB` | 1,00:1 | sidbakgrund |
+| `nxt.neutral-100` | `#EDEAEE` | 1,12:1 | subtil yta |
+| `nxt.neutral-200` | `#DCD8DD` | 1,33:1 | avdelare |
+| `nxt.neutral-300` | `#C2BEC4` | 1,72:1 | dekorativ ram |
+| `nxt.neutral-400` | `#928D95` | **3,06:1** | ram som bär betydelse |
+| `nxt.neutral-500` | `#736F78` | **4,62:1** | sekundärtext (golv) |
+| `nxt.neutral-600` | `#5E5962` | 6,41:1 | text |
+| `nxt.neutral-700` | `#48434D` | 9,04:1 | text |
+| `nxt.neutral-800` | `#37313C` | 11,85:1 | text |
+| `nxt.neutral-900` | `#211B27` | 15,80:1 | primärtext |
+
+**50–400 bär aldrig text.** `400` ligger på 48 % för att korsa 3:1 (WCAG
+1.4.11) — under det kan en ram inte ensam identifiera en komponent.
+
+`--nxt-surface` `#FFFFFF` är vit yta **på** papper: kort, paneler, tabellrader.
+
 **Regel: `--nxt-ink-soft` är golvet för sekundärtext.** 62 % är valt för att det är
 den lägsta andelen bläck som klarar AA — 60 % ger 4,35:1 och underkänns. Sänk
 den inte lokalt.
